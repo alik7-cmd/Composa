@@ -51,6 +51,11 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
                 initial = 'A',
                 avatarProperties = AvatarDefaults.medium
             )
+
+            Avatar(
+                initial = 'A',
+                avatarProperties = AvatarDefaults.medium
+            )
         },
         modifier = Modifier.padding(vertical = 40.dp, horizontal = 20.dp),
         containerColor = Color.White

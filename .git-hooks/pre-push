@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Get the last commit message
+commit_message=$(git log -1 --pretty=%B)
+
+# Define the pattern to match
+pattern="^Title: .+\n\nWhy: .+\nTAG: (FIX|OTHER|FEATURE|REFACTOR)$"
+
+# Check if the commit message matches the pattern
+if ! echo "$commit_message" | grep -Ez "$pattern"; then
+  echo "Error: Commit message does not follow the required pattern."
+  echo "Please ensure your commit message matches the following format:"
+  echo -e "\nTitle: <Headline of the change>\n\nWhy: <Please explain why this is done>\nTAG: FIX/OTHER/FEATURE/REFACTOR"
+  exit 1
+fi

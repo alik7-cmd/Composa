@@ -9,6 +9,9 @@ on:
     branches:
       - main # Trigger on pull requests targeting main
 
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Build and Test

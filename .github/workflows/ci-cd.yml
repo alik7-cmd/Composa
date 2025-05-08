@@ -65,7 +65,9 @@ jobs:
           NEW_VERSION="$MAJOR.$MINOR.$PATCH"
 
           # Update version in Gradle
-          sed -i '' "s/version = \"$VERSION\"/version = \"$NEW_VERSION\"/" composa/build.gradle.kts
+          CURRENT_VERSION=$(grep -oP 'version = "\K[0-9]+\.[0-9]+\.[0-9]+' composa/build.gradle.kts)
+          NEW_VERSION="1.0.$(( ${CURRENT_VERSION##*.} + 1 ))"
+          sed -i '' "s/version = \"$CURRENT_VERSION\"/version = \"$NEW_VERSION\"/" composa/build.gradle.kts
 
           # Commit and push version update
           git config user.name "github-actions[bot]"

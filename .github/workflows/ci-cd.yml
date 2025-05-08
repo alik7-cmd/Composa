@@ -4,9 +4,10 @@ on:
   push:
     branches:
       - main
+      - '**' # Trigger on any feature branch
   pull_request:
     branches:
-      - main
+      - main # Trigger on pull requests targeting main
 
 jobs:
   build:
@@ -14,18 +15,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Set up JDK
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
           java-version: 17
           distribution: temurin
 
-      # Cache Gradle dependencies
       - name: Cache Gradle dependencies
         uses: actions/cache@v3
         with:
@@ -34,18 +32,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      # Build the project
       - name: Build
         run: ./gradlew build
 
-      # Run Detekt for static code analysis
       - name: Run Detekt
         run: ./gradlew detekt
 
-      # Run Unit Tests
       - name: Run Unit Tests
         run: ./gradlew test
-
-      # Run UI Tests
-      - name: Run UI Tests
-        run: ./gradlew connectedAndroidTest

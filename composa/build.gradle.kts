@@ -4,6 +4,8 @@ plugins {
     alias(libs.plugins.detekt)
 }
 
+version = "1.0.0"
+
 android {
     namespace = "com.techascent.composa"
     compileSdk = 34

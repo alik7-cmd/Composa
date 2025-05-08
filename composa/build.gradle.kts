@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.detekt)
 }
 
-version = "1.0.3"
+version = "1.0.4"
 
 android {
     namespace = "com.techascent.composa"

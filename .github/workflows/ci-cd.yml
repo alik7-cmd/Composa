@@ -65,13 +65,8 @@ jobs:
           NEW_VERSION="$MAJOR.$MINOR.$PATCH"
 
           # Update version in Gradle file
-          while IFS= read -r line; do
-            if [[ $line == version\ =\ \"$CURRENT_VERSION\"* ]]; then
-              echo "version = \"$NEW_VERSION\""
-            else
-              echo "$line"
-            fi
-          done < composa/build.gradle.kts > temp && mv temp composa/build.gradle.kts
+          awk -v old="version = \"$CURRENT_VERSION\"" -v new="version = \"$NEW_VERSION\"" \
+              '{gsub(old, new)}1' composa/build.gradle.kts > temp && mv temp composa/build.gradle.kts
 
           # Commit and push version update
           git config user.name "github-actions[bot]"

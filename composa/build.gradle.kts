@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.detekt)
 }
 
-version = "1.0.1"
+version = "1.0.2"
 
 android {
     namespace = "com.techascent.composa"
@@ -69,3 +69,4 @@ tasks.register("printVersion") {
     doLast {
         println(project.version)
     }
+}

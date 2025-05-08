@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.detekt)
 }
 
 android {
@@ -36,6 +37,12 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.kotlinCompilerExtension.get()
     }
+}
+
+detekt {
+    toolVersion = libs.versions.detekt.get()
+    config = files("${project.rootDir}/.git-hooks/detekt.yml")
+    buildUponDefaultConfig = true
 }
 
 dependencies {

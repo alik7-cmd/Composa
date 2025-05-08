@@ -28,13 +28,15 @@ import com.techascent.composa.theming.ComposaColors
  * A customizable composable checkbox component.
  *
  * @param modifier The [Modifier] to be applied to the checkbox.
- * @param checked A boolean value indicating whether the checkbox is checked or not. Defaults to `false`.
+ * @param checked A boolean value indicating whether the checkbox is checked or not.
+ * Defaults to `false`.
  * @param onCheckedChange A callback function triggered when the checkbox state changes.
  * @param borderColor The color of the checkbox border. Defaults to [ComposaColors.GREEN_100].
  * @param tint The tint color for the checkmark icon. Defaults to [Color.Unspecified].
  *
  * This component uses an [IconToggleButton] to handle the toggle behavior and displays a checkmark
- * icon when the checkbox is in the checked state. The checkmark is animated using [AnimatedVisibility]
+ * icon when the checkbox is in the checked state.
+ * The checkmark is animated using [AnimatedVisibility]
  * with scale-in and scale-out animations.
  */
 @OptIn(ExperimentalMaterial3Api::class)

@@ -21,13 +21,16 @@ import androidx.compose.ui.unit.sp
 import com.techascent.composa.theming.ComposaColors
 
 /**
- * Represents the properties of an avatar, including size, badge size, font size, font color, and background color.
+ * Represents the properties of an avatar, including size, badge size, font size, font color,
+ * and background color.
  *
  * @property size The size of the avatar.
  * @property badgeSize The size of the badge displayed on the avatar.
  * @property fontSize The font size of the text inside the avatar.
- * @property fontColor The color of the text inside the avatar. Defaults to [ComposaColors.GREEN_100].
- * @property backgroundColor The background color of the avatar. Defaults to [ComposaColors.GREEN_300].
+ * @property fontColor The color of the text inside the avatar. Defaults to
+ * [ComposaColors.GREEN_100].
+ * @property backgroundColor The background color of the avatar. Defaults to
+ * [ComposaColors.GREEN_300].
  */
 @Immutable
 data class AvatarProperties internal constructor(

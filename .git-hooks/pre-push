@@ -1,15 +1,29 @@
 #!/bin/bash
 
-# Get the last commit message
-commit_message=$(git log -1 --pretty=%B)
+# Run Detekt
+echo "Running Detekt..."
+./gradlew detekt
+if [ $? -ne 0 ]; then
+  echo "Error: Detekt check failed. Please fix the issues before pushing."
+  exit 1
+fi
+
+# Get all commit messages in the current branch that are not yet pushed to main
+commit_messages=$(git log origin/main..HEAD --pretty=%B)
 
 # Define the pattern to match
 pattern="^Title: .+\n\nWhy: .+\nTAG: (FIX|OTHER|FEATURE|REFACTOR)$"
 
-# Check if the commit message matches the pattern
-if ! echo "$commit_message" | grep -Ez "$pattern"; then
-  echo "Error: Commit message does not follow the required pattern."
-  echo "Please ensure your commit message matches the following format:"
-  echo -e "\nTitle: <Headline of the change>\n\nWhy: <Please explain why this is done>\nTAG: FIX/OTHER/FEATURE/REFACTOR"
-  exit 1
-fi
+# Check each commit message
+echo "Checking commit messages..."
+while IFS= read -r commit_message; do
+  if [[ -n "$commit_message" && ! "$commit_message" =~ $pattern ]]; then
+    echo "Error: Commit message does not follow the required pattern:"
+    echo "$commit_message"
+    echo -e "\nPlease ensure your commit message matches the following format:"
+    echo -e "\nTitle: <Headline of the change>\n\nWhy: <Please explain why this is done>\nTAG: FIX/OTHER/FEATURE/REFACTOR"
+    exit 1
+  fi
+done <<< "$commit_messages"
+
+echo "Pre-push checks passed successfully."

@@ -13,3 +13,8 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Ignore detekt reports
+**/detekt-report.html
+**/detekt-report.xml
+**/code-quality-reports/**

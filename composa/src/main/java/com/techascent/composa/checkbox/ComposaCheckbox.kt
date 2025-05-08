@@ -35,7 +35,8 @@ import com.techascent.composa.theming.ComposaColors
  * @param tint The tint color for the checkmark icon. Defaults to [Color.Unspecified].
  *
  * This component uses an [IconToggleButton] to handle the toggle behavior and displays a checkmark
- * icon when the checkbox is in the checked state. The checkmark is animated using [AnimatedVisibility]
+ * icon when the checkbox is in the checked state.
+ * The checkmark is animated using [AnimatedVisibility]
  * with scale-in and scale-out animations.
  */
 @OptIn(ExperimentalMaterial3Api::class)

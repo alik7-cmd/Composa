@@ -49,8 +49,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Create Git Tag
+      - name: Push Git Tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           VERSION=$(./gradlew -q printVersion)
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git tag $VERSION
-          git push origin $VERSION
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} $VERSION
